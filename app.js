@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listing");
+const path = require("path");
 // ******************************************************************************************
 
 // ******************************************************************************************
@@ -18,7 +19,8 @@ app.listen(port, (req,res)=>{
 // ******************************************************************************************
 // Setting up things
 app.set("view engine", "ejs");
-
+app.set("views",path.join(__dirname, "/views"));
+app.use(express.urlencoded({extended: true}));
 
 // ******************************************************************************************
 
@@ -49,7 +51,34 @@ app.get("/listings", async (req,res)=>{
 
 // Create Route
 app.get("/listings/new", (req,res)=>{
-    res.send("this is full show page");
+    res.render("listings/new.ejs");
 })
+
+app.post("/listings", async (req,res)=>{
+    // let {title, description, image,price,location,country} = req.body;
+    // let newListing = new Listing({
+    //     title:title,
+    //     description:description,
+    //     image:image,
+    //     price:price,
+    //     location:location,
+    //     country:country,
+    // });
+    // console.log(newListing);
+//Above way is more longer so we use shorter way to do the same things
+
+// for it we use object's key:value pair
+    let newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+});
+
+// Read Route
+app.get("/listings/:id", async (req,res)=>{
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
+    res.render("listings/show.ejs", {listing});
+});
+
 
 // ******************************************************************************************
