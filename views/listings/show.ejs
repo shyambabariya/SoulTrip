@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Listing Details here</h3>
+    <div class="container">
+      <div>
+        <img
+          src="<%= listing.image%>"
+          alt="listing image"
+          style="height: 10rem"
+        />
+      </div>
+      <h4>Title: <%=listing.title%></h4>
+      <p>About place: <%=listing.description%></p>
+      <h4>Price: <%=listing.price%> / night</h4>
+      <p>Location: <%=listing.location%></p>
+      <p>Country: <%= listing.country%></p>
+    </div>
+  </body>
+</html>
