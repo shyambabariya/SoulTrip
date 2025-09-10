@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulTrip</title>
+</head>
+<body>
+    <h3>Add new Listing</h3>
+    <form  method="post" action="/listings">
+        <label for="title">Title</label> <!-- Basically here we use listing[title] so it means listing is object and it value is title means we pass as key:value pair -->
+        <input type="text" name="listing[title]" id="title"> <br> <br>
+        <label for="description">Description</label>
+        <input type="text" name="listing[description]" id="description"> <br><br>
+        <label for="image">Image</label>
+        <input type="text" name="listing[image]" id="image"> <br><br>
+        <label for="price">Price</label>
+        <input type="text" name="listing[price]" id="price"><br><br>
+        <label for="location">Location</label>
+        <input type="text" name="listing[location]" id="location"> <br><br>
+        <label for="country">Country</label>
+        <input type="text" name="listing[country]" id="country"> <br><br>
+        <button>Add new Listing</button>
+    </form>
+</body>
+</html>
