@@ -1,25 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h3>Listing Details here</h3>
-    <div class="container">
-      <div>
-        <img
-          src="<%= listing.image%>"
-          alt="listing image"
-          style="height: 10rem"
-        />
+<% layout("layouts/boilerplate") -%>
+<body>
+  <div class="row mt-2">
+    <div class="col-lg-12 d-flex justify-content-center">
+      <div class="card w-75 listing-card">
+        <h3>Place: <%=listing.title%></h3>
+        <img src="<%= listing.image%>" class="card-img-top" alt="listing image" style="height: 25rem;">
+        <div class="card-body p-2">
+          <p class="card-text ">
+            <div class="mt-1">
+              <b> About place: </b><%=listing.description%> <br>
+            </div>
+            <div class="mt-1">
+              <b>Price:  &#8377; <%=listing.price.toLocaleString("en-IN")%> / night</b> <br>
+            </div>
+            <div class="mt-1">
+              <b>Location: </b><%=listing.location%> <br>
+            </div>
+            <div class="mt-1">
+              <b>Country: </b><%= listing.country%>
+            </div>
+          </p>
+  <div class="row mt-4 mb-4">
+  <div class="col-12 d-flex justify-content-sm-start gap-2">
+    <form method="get" action="/listings/<%=listing._id%>/edit">
+      <button class="btn btn-danger">Edit</button>
+    </form>
+    <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+      <button class="btn btn-dark">Delete</button>
+    </form>
+  </div>
+</div>
+        </div>
       </div>
-      <h4>Title: <%=listing.title%></h4>
-      <p>About place: <%=listing.description%></p>
-      <h4>Price: <%=listing.price%> / night</h4>
-      <p>Location: <%=listing.location%></p>
-      <p>Country: <%= listing.country%></p>
     </div>
-  </body>
-</html>
+  </div>
+</body>
