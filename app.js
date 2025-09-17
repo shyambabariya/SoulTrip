@@ -9,7 +9,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError =require("./utils/ExpressError");
-const {listingSchema} = require("./schema");
+const {listingSchema, reviewSchema} = require("./schema");
+const Review = require("./models/review");
 // ******************************************************************************************
 
 // ******************************************************************************************
@@ -45,9 +46,22 @@ async function main(){
 // ******************************************************************************************
 
 // ******************************************************************************************
-// Validation Things
+// Validation Things 
+// Listing 
 const validateListing = (req,res,next) =>{
     let {error} = listingSchema.validate(req.body);
+    if(error){
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    }
+    else{
+        next();
+    }
+}
+
+// Review
+const validateReview = (req,res,next) =>{
+    let {error} = reviewSchema.validate(req.body);
     if(error){
         let errMsg = error.details.map((el) => el.message).join(",");
         throw new ExpressError(400, errMsg);
@@ -90,9 +104,6 @@ app.post("/listings", validateListing, wrapAsync(async (req,res)=>{
 
 // for it we use object's key:value pair
     let newListing = new Listing(req.body.listing);
-    if(!req.body.listing){
-        throw new ExpressError(400, "Send valid data for listing");
-    }
     await newListing.save();
     res.redirect("/listings");
 }));
@@ -100,7 +111,7 @@ app.post("/listings", validateListing, wrapAsync(async (req,res)=>{
 // Read Route
 app.get("/listings/:id", wrapAsync(async (req,res)=>{
     let {id} = req.params;
-    let listing = await Listing.findById(id);
+    let listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", {listing});
 }));
 
@@ -124,6 +135,26 @@ app.delete("/listings/:id", wrapAsync(async (req,res)=>{
     console.log(delResult);
     res.redirect("/listings");
 }));
+
+// Review Route
+// Add review Route
+app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req,res)=>{
+   let listing = await Listing.findById(req.params.id);
+   let review = new Review(req.body.review);
+   listing.reviews.push(review);
+   await review.save();
+   await listing.save();
+   res.redirect(`/listings/${listing._id}`);
+}));
+
+// Delete review Route
+app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async(req,res)=>{
+    let {id, reviewId} = req.params;
+    await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+}));
+
 // ******************************************************************************************
 
 // ******************************************************************************************
