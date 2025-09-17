@@ -1,12 +1,17 @@
 <% layout("layouts/boilerplate") -%>
 <body>
-  <div class="row mt-2">
+  <div class="row mt-1">
     <div class="col-lg-12 d-flex justify-content-center">
       <div class="card w-75 listing-card">
         <h3>Place: <%=listing.title%></h3>
-        <img src="<%= listing.image%>" class="card-img-top" alt="listing image" style="height: 25rem;">
-        <div class="card-body p-2">
-          <p class="card-text ">
+        <img
+          src="<%= listing.image%>"
+          class="card-img-top"
+          alt="listing image"
+          style="height: 25rem"
+        />
+        <div class="card-body ms-2">
+       <p class="card-text">
             <div class="mt-1">
               <b> About place: </b><%=listing.description%> <br>
             </div>
@@ -19,19 +24,70 @@
             <div class="mt-1">
               <b>Country: </b><%= listing.country%>
             </div>
-          </p>
-  <div class="row mt-4 mb-4">
-  <div class="col-12 d-flex justify-content-sm-start gap-2">
-    <form method="get" action="/listings/<%=listing._id%>/edit">
-      <button class="btn btn-danger">Edit</button>
-    </form>
-    <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
-      <button class="btn btn-dark">Delete</button>
-    </form>
-  </div>
-</div>
+            </p>
+          <div class="row mt-4">
+            <div class="col-12 d-flex justify-content-sm-start gap-2">
+              <form method="get" action="/listings/<%=listing._id%>/edit">
+                <button class="btn btn-danger">Edit</button>
+              </form>
+              <form
+                method="post"
+                action="/listings/<%=listing._id%>?_method=DELETE"
+              >
+                <button class="btn btn-dark">Delete</button>
+              </form>
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
     </div>
   </div>
+  <div class="col-lg-12 d-flex justify-content-center">
+    <div class="card w-75 listing-card">
+        <h5>Leave Reviews</h5>
+        <div class="card-body ms-2">
+        <p class="card-text">
+          <form method="post" action="/listings/<%=listing._id%>/reviews" class="needs-validation" novalidate>
+            <div>
+              <label for="rating" class="form-label">Rating</label>
+              <input type="range" name="review[rating]" id="rating" class="form-range" min="1" max="5" required>
+            </div>
+            <div>
+              <label for="comment" class="form-label">Comment</label>
+              <textarea name="review[comment]" id="comment" class="form-control" required placeholder="Best Beach view, Good staff must visit "></textarea>
+              <div class="invalid-feedback">
+              Please Enter your Comment
+            </div>
+            </div>
+            <button class="btn btn-danger mt-4">Add Review</button>
+          </form>
+          </p>
+          <hr>
+        </div>
+        </div>
+    </div>
+
+   <div class="col-lg-12 d-flex justify-content-center">
+  <div class="card w-75 listing-card">
+      <h5 class="mb-3">All Reviews</h5>
+      <div class="row">
+        <% for (review of listing.reviews) { %>
+          <div class="col-md-6">
+            <div class="card p-2 mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Zatemax</h5>
+                <p class="card-text"><b>Comment: </b><%= review.comment %></p>
+                <p class="card-text"><b>Rating: </b><%= review.rating %></p>
+              </div>
+              <form class="mt-2" method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id %>?_method=DELETE">
+                <button class="btn btn-dark btn-sm">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
 </body>
