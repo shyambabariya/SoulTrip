@@ -9,6 +9,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError =require("./utils/ExpressError");
 const session = require("express-session");
 const flash = require("connect-flash");
+const User = require("./models/user.js");
 // Routes require
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
