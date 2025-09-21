@@ -9,10 +9,13 @@ const ejsMate = require("ejs-mate");
 const ExpressError =require("./utils/ExpressError");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 // Routes require
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 // ******************************************************************************************
 
 // ******************************************************************************************
@@ -62,7 +65,17 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 // ******************************************************************************************
-
+// passport implement
+app.use(passport.initialize());
+// for every request the passport get initialize
+app.use(passport.session());
+// By deafult passport use the session
+passport.use(new LocalStrategy(User.authenticate()));
+// here we use LocalStrategy of the passport so using this strategy we authenticate the user
+passport.serializeUser(User.serializeUser());
+// not to login when chnage the website page by default logged in basically logged in every pages
+passport.deserializeUser(User.deserializeUser());
+// after logout if we access the another page so not to login there basically logout from every pages
 
 // ******************************************************************************************
 // Routes set up
@@ -74,8 +87,12 @@ app.get("/", (req,res)=>{
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
-})
+});
+
+// user Routes
+app.use("/", userRouter);
 
 // listing Routes
 app.use("/listings",listings);
