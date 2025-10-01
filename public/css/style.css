@@ -1,67 +1,76 @@
-body{
-    font-family: "Plus Jakarta Sans", sans-serif !important;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.container{
-    flex: 1;
+.container {
+  flex: 1;
 }
 /* Navbar */
-.navbar{
-    background-color: white;
-    /* height: 5rem; */
-    width: 100% !important;
+.navbar {
+  background-color: white;
+  /* height: 5rem; */
+  width: 100% !important;
 }
 
 /* Footer */
-.f-info{
-    height: 10rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    text-align: center;
-    background-color: #ebebeb;
+.f-info {
+  height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  background-color: #ebebeb;
 }
-.f-info-socials, .f-info-links, .f-brand{
-    width: 100%;
+.f-info-socials,
+.f-info-links,
+.f-brand {
+  width: 100%;
 }
-.f-info-socials i{
-    font-size: 2rem;
+.f-info-socials i {
+  font-size: 2rem;
 }
-.f-brand{
-    font-size: 1rem;
+.f-brand {
+  font-size: 1rem;
 }
 
-/* Index.ejs */ 
-.listing-card-home{
-    border: none !important;   
-    margin-bottom: 2rem;
+/* Index.ejs */
+.listing-card-home {
+  border: none !important;
+  margin-bottom: 2rem;
 }
-.listing-card{
-    border: none !important;   
-    /* margin-bottom: 2rem; */
+.listing-card {
+  border: none !important;
+  /* margin-bottom: 2rem; */
 }
-.card-img-top{
-    border-radius: 1rem;
-    width: 100% !important;
-    object-fit: cover !important;
-    height: 20rem;
+.card-img-top {
+  border-radius: 1rem;
+  width: 100% !important;
+  object-fit: cover !important;
+  height: 20rem;
 }
-.card-body{
-    padding: 0%;
+.card-body {
+  padding: 0%;
 }
-.card-text p{
-    font-size: 400;
+.card-text p {
+  font-size: 400;
 }
-.listing-link{
-    text-decoration: none;
+.listing-link {
+  text-decoration: none;
 }
 /* Hover effect on card */
-.card-img-overlay{
-    opacity: 0;
+.card-img-overlay {
+  opacity: 0;
 }
-.card-img-overlay:hover{
-    opacity: 0.3;
-    background-color: white;
+.card-img-overlay:hover {
+  opacity: 0.3;
+  background-color: white;
+}
+
+/* Map Style */
+#map {
+  height: 25rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
 }
