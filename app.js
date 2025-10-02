@@ -82,11 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 // after logout if we access the another page so not to login there basically logout from every pages
 
 // ******************************************************************************************
-// Routes set up
-// home route
-app.get("/", (req,res)=>{
-    res.send("this is the working site");
-});
+// Routes set up;
 
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
