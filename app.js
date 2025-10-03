@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError =require("./utils/ExpressError");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -42,6 +43,10 @@ app.engine("ejs",ejsMate);
 // ******************************************************************************************
 
 // ******************************************************************************************
+// DB URL
+const dbUrl = process.env.ATLASDB_URL;
+// const MONGO_URL = mongodb://127.0.0.1:27017/soultrip_prac
+
 // Database connection
 main().then(()=>{
     console.log("Connect with DB");
@@ -50,14 +55,31 @@ main().then(()=>{
 });
 
 async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/soultrip_prac");
+    await mongoose.connect(dbUrl);
 };
 // ******************************************************************************************
 
 // ******************************************************************************************
-// session and connect flash things
+// session,connect flash, mongodb session things
+
+// mongodb session
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600,
+}); 
+
+//if error comes in store
+store.on("error", ()=>{
+    console.log("ERROR IN MONGO SESSION STORE", err);
+});
+
+// Session option
 const sessionOptions = {
-    secret: "mysupersecretstring",
+    store,//mongo store related store 
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie:{
