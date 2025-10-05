@@ -44,7 +44,7 @@ body {
   border: none !important;
   /* margin-bottom: 2rem; */
 }
-.card-img-top {
+/* .card-img-top {
   border-radius: 1rem;
   width: 100% !important;
   object-fit: cover !important;
@@ -58,7 +58,7 @@ body {
 }
 .listing-link {
   text-decoration: none;
-}
+} */
 /* Hover effect on card */
 .card-img-overlay {
   opacity: 0;
