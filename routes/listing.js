@@ -14,15 +14,15 @@ const upload = multer({ storage });
 // Index Route
 // router.get("/", wrapAsync(listingController.index));
 
-// router
-//   .route("/")
-//   .get(wrapAsync(listingController.index))
-//   .post(
-//     isLoggedIn,
-//     upload.single("listing[image]"),
-//     validateListing,
-//     wrapAsync(listingController.createListing)
-//   );
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(
+    isLoggedIn,
+    upload.single("listing[image]"),
+    validateListing,
+    wrapAsync(listingController.createListing)
+  );
 
 // Create Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
