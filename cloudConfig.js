@@ -7,15 +7,15 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloudinary,
-//   params: {
-//     folder: "soulTrip_DEV",
-//     allowedFormats: ["png", "jpg", "jpeg"], // supports promises as well
-//   },
-// });
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "soulTrip_DEV",
+    allowedFormats: ["png", "jpg", "jpeg"], // supports promises as well
+  },
+});
 
-// module.exports = {
-//   cloudinary,
-//   storage,
-// };
+module.exports = {
+  cloudinary,
+  storage,
+};
