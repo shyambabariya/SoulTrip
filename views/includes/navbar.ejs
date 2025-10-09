@@ -1,27 +1,40 @@
 <style>
-    .btn-search{
-    background-color: #fe424d;
+  .btn-search {
+    background-color: #dc3545;
     color: #fff;
     border-radius: 25px;
+    transition: 1s;
   }
-   .btn-search:hover{
-    background-color: #fe424d;
+  .btn-search:hover {
+    background-color: #dc3545;
     color: #fff;
+    transform: scale(1.05);
   }
-   .btn-search i{
+  .btn-search i {
     display: inline;
     margin-right: 0.5rem;
   }
-    .search-input{
+  .search-input {
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
   }
+  .nav-link {
+    transition: 1s;
+    margin-left: 1rem;
+  }
+  .nav-link:hover {
+    transform: scale(1.1);
+    background: #f1f1f1;
+    border-radius: 0.5rem;
+  }
 </style>
 <nav
-  class="navbar navbar-expand-sm bg-body-light border-bottom sticky-top py-3"
+  class="navbar navbar-expand-md bg-body-light border-bottom sticky-top p-3 py-3"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">SoulTrip</a>
+    <a class="navbar-brand" href="/listings">
+      <img src="/assets/soultrip.png" style="height: 2.5rem" alt="soultrip" />
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -39,9 +52,15 @@
       </div>
       <div class="navbar-nav ms-auto">
         <form class="d-flex" role="search">
-      <input class="form-control me-2 search-input" type="search" placeholder="Search Destinations"/>
-      <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-    </form>
+          <input
+            class="form-control me-2 search-input"
+            type="search"
+            placeholder="Search Destinations"
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
       </div>
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
