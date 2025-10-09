@@ -1,115 +1,191 @@
 <% layout("layouts/boilerplate") -%>
 <style>
-  #filters {
+  .filter-bar {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 2rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0.8rem 0;
   }
-  /* #filters {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 7.5%;
+  .filter-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .filter-container {
     overflow-x: auto;
-    overscroll-behavior-inline:contain;
-    margin-bottom: 2rem;
-  } */
-  .filter {
-    text-align: center;
-    margin-right: 2rem;
-    margin-top: 2rem;
-    opacity: 0.7;
-    transition: 1s;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem;
+    width: 80%;
   }
-  .filter:hover {
-    opacity: 1;
-    cursor: pointer;
-    transform: scale(1.1);
-  }
-  .filter p {
-    font-size: 0.8rem;
-  }
-  .tax-info {
+  .filter-container::-webkit-scrollbar {
     display: none;
   }
-  .tax-toggle {
-    border: 1px solid black;
-    border-radius: 1rem;
-    padding: 1rem;
-    height: 3.5rem;
-    margin-left: 5rem;
+  .filter-item {
+    flex: 0 0 auto;
+    text-align: center;
+    background: #fff;
+    border-radius: 0.8rem;
+    padding: 0.4rem 0.4rem;
+    min-width: 5.6rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+  }
+  .filter-item:hover {
+    transform: scale(1.05);
+    background: #f1f1f1;
+    cursor: pointer;
+  }
+  .filter-item i {
+    font-size: 20px;
+    color: #dc3545;
+  }
+  .filter-item p {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0;
+  }
+  .scroll-btn {
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+    /* margin: 0 10px; */
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+  }
+  .scroll-btn:hover {
+    background-color: #f8d7da;
+  }
+  .scroll-btn i {
+    color: #dc3545;
+  }
+  .tax-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border-radius: 30px;
+    padding: 6px 14px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+  .tax-toggle:hover {
+    background-color: #f8d7da33;
+  }
+  .tax-toggle label {
+    font-size: 14px;
+    color: #333;
   }
 
-  @keyframes appear {
-    from {
-      opacity: 0;
-      scale: 0.5;
+  /*Small screen icon-only toggle */
+  .tax-btn-sm {
+    display: none;
+    border: none;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .tax-btn-sm i {
+    color: #dc3545;
+    font-size: 18px;
+  }
+  .tax-btn-sm:hover {
+    background: #f8d7da;
+  }
+  @media (max-width: 768px) {
+    .tax-toggle {
+      display: none;
     }
-    to {
-      opacity: 1;
-      scale: 1;
+    .tax-btn-sm {
+      display: flex;
     }
   }
 </style>
 <body>
   <!-- <h2>All Listings</h2> -->
-  <div id="filters">
-    <div class="filter">
-      <div><i class="fa-solid fa-fire"></i></div>
-      <p>Trending</p>
+  <div class="filter-bar">
+    <div class="filter-nav">
+      <button id="backBtn" class="scroll-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="filter-container" id="scrollArea">
+        <div class="filter-item">
+          <i class="fa-solid fa-fire"></i>
+          <p>Trending</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-bed"></i>
+          <p>Rooms</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-mountain-city"></i>
+          <p>Cities</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <p>Mountains</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-brands fa-fort-awesome"></i>
+          <p>Castles</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-person-swimming"></i>
+          <p>Pools</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-campground"></i>
+          <p>Camping</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-cow"></i>
+          <p>Farms</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-snowman"></i>
+          <p>Arctic</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-igloo"></i>
+          <p>Domes</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-sun"></i>
+          <p>Beach</p>
+        </div>
+        <div class="filter-item">
+          <i class="fa-solid fa-tree"></i>
+          <p>Forest</p>
+        </div>
+      </div>
+      <button id="forwardBtn" class="scroll-btn">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
     </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-bed"></i></div>
-      <p>Rooms</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain-sun"></i></div>
-      <p>Mountains</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-brands fa-fort-awesome"></i></div>
-      <p>Castles</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-campground"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-cow"></i></div>
-      <p>Farms</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowman"></i></div>
-      <p>Arctic</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-igloo"></i></div>
-      <p>Doms</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowman"></i></div>
-      <p>Arctic</p>
-    </div>
-     <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
-    </div>
-     <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
-    </div>
-    <div class="tax-toggle">
-      <div class="form-check-reverse form-switch">
+
+    <!-- Tax toggle added inline -->
+    <div class="tax-toggle" title="Enable to view total price including taxes">
+      <div class="form-check form-switch m-0">
         <input
           class="form-check-input"
           type="checkbox"
@@ -121,6 +197,13 @@
         >
       </div>
     </div>
+    <button
+      class="tax-btn-sm"
+      id="switchCheckDefault"
+      title="Toggle tax display"
+    >
+      <i class="fa-solid fa-receipt"></i>
+    </button>
   </div>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for (let listing of listings) {%>
@@ -157,5 +240,23 @@
         info.style.display = "none";
       }
     }
+  });
+
+  const scrollArea = document.getElementById("scrollArea");
+  const forwardBtn = document.getElementById("forwardBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  forwardBtn.addEventListener("click", () => {
+    scrollArea.scrollBy({ left: 300, behavior: "smooth" });
+  });
+
+  backBtn.addEventListener("click", () => {
+    scrollArea.scrollBy({ left: -300, behavior: "smooth" });
+  });
+
+  // Smooth horizontal scroll with mouse wheel
+  scrollArea.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    scrollArea.scrollLeft += e.deltaY;
   });
 </script>
