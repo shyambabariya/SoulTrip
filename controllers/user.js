@@ -40,7 +40,7 @@ module.exports.logout = (req, res) => {
     if (err) {
       return next(err);
     }
-    req.flash("success", "Logged out Successfully");
+    req.flash("success", "Logged out Successfully!");
     res.redirect("/listings");
   });
 };
