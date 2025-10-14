@@ -116,10 +116,11 @@ app.use((req,res,next)=>{
 // user Routes
 app.use("/", userRouter);
 
-// listing Routes
+// Index route redirect to the listings
 app.get("/", (req,res)=>{
     res.redirect("/listings");
 });
+// listing Routes
 app.use("/listings",listings);
 
 // reiview Routes
