@@ -88,7 +88,7 @@ body {
 }
 
 /* Animation */
-/* @keyframes appear {
+@keyframes appear {
   from {
     opacity: 0;
     scale: 0.5
@@ -102,4 +102,4 @@ body {
 .card-review{
   border: 1px solid grey !important;
   border-radius: 0.5rem;
-} */
+}
