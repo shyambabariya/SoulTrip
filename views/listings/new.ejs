@@ -90,6 +90,24 @@
           <div class="valid-feedback">Country Looks Good!</div>
           <div class="invalid-feedback">Please Enter a Country.</div>
         </div>
+        <label class="form-label">Choose Category</label>
+      
+        <div class="mb-3 d-flex">
+          <% for (category of categories)
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="trending">
+            <label class="form-check-label" for="trending">
+            Mountains
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2">
+            <label class="form-check-label" for="radioDefault2">
+            Mountains
+            </label>
+          </div>
+        </div>
+
         <div class="mb-4 mt-4">
           <button class="btn btn-danger">Add new Listing</button>
         </div>
