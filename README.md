@@ -2,7 +2,7 @@
 
 > An online platform to discover and book hotels, beach houses, villas, and unique stays around the world.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-soultrip--ocy2.onrender.com-blue?style=for-the-badge)](https://soultrip-ocy2.onrender.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-soultrip--ocy2.onrender.com-blue?style=for-the-badge)](https://soultrip-nine.vercel.app)
 
 
 ---
@@ -301,7 +301,7 @@ nodemon app.js
 
 The application is deployed on Render:
 
-👉 [https://soultrip-ocy2.onrender.com](https://soultrip-ocy2.onrender.com)
+👉 [https://soultrip-nine.vercel.app](https://soultrip-nine.vercel.app)
 
 ---
 
