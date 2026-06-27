@@ -2,7 +2,7 @@
 
 > An online platform to discover and book hotels, beach houses, villas, and unique stays around the world.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-soultrip--ocy2.onrender.com-blue?style=for-the-badge)](https://soultrip-nine.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-soultrip--nine.vercel.app-blue?style=for-the-badge)](https://soultrip-nine.vercel.app)
 
 
 ---
